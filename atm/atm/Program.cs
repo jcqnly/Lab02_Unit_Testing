@@ -10,7 +10,8 @@ namespace atm
                 "What would you like to do?\n" +
                 "1. Deposit\n" +
                 "2. Withdraw\n" +
-                "3. View Balance");
+                "3. View Balance\n" +
+                "4. Exit\n");
 
             Console.Read();
         }
