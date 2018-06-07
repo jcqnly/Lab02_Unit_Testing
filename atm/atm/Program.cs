@@ -89,6 +89,7 @@ namespace atm
         public static double AddDeposit(double userDeposit)
         {
             Balance += userDeposit;
+            Console.WriteLine($"Your balance is ${Balance}\n");
             return Balance;
         }
 
@@ -117,6 +118,7 @@ namespace atm
         {
             if (userWithdraw > Balance) Console.WriteLine("You don't have that much...");
             else Balance -= userWithdraw;
+            Console.WriteLine($"Your balance is ${Balance}\n");
             return Balance;
         }
 
