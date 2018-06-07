@@ -4,7 +4,7 @@ namespace atm
 {
     class Program
     {
-        public static double Balance = 5000;
+        public static decimal Balance = 5000m;
 
         static void Main(string[] args)
         {
@@ -54,13 +54,28 @@ namespace atm
            }
         }
 
-        public static double Deposit()
+        public static decimal Deposit()
         {
             Console.WriteLine("How much would you like to deposit?\n");
-            double userDeposit = double.Parse(Console.ReadLine());
+            decimal userDeposit = decimal.Parse(Console.ReadLine());
             Balance += userDeposit;
             return Balance;
         }
 
+        public static decimal Withdraw()
+        {
+            Console.WriteLine("How much would you like to withdraw?");
+            decimal userWithdraw = decimal.Parse(Console.ReadLine());
+            if (userWithdraw > Balance)
+            {
+                Console.WriteLine("You're withdrawing too much");
+                Withdraw();
+            }
+            else
+            {
+                Balance -= userWithdraw;
+            }
+            return Balance;
+        }
     }
 }
