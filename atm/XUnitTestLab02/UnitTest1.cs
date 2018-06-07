@@ -1,6 +1,7 @@
 using atm;
 using System;
 using Xunit;
+using static atm.Program;
 
 namespace XUnitTestLab02
 {
@@ -11,7 +12,7 @@ namespace XUnitTestLab02
         [InlineData(-5000, 5001)]//passing invalid input, cannot add negative numbers
         public void CanDeposit(double value, double expectedResult)
         {
-            Assert.Equal(expectedResult, Program.AddDeposit(value));            
+            Assert.Equal(expectedResult, AddDeposit(value));            
         }
 
         [Theory]
@@ -19,7 +20,7 @@ namespace XUnitTestLab02
         [InlineData(1000000, 5000)]//passing invalid input, withdrawing a very large amount
         public void CanSubtract(double value, double expectedResult)
         {
-            Assert.Equal(expectedResult, Program.MinusWithdraw(value));
+            Assert.Equal(expectedResult, MinusWithdraw(value));
         }
     }
 }
