@@ -38,7 +38,9 @@ Choosing 'Exit' will exit the program.  If a user selects any of the other 3 opt
 ## Screenshots
 Main Menu:
 ![menu](https://raw.githubusercontent.com/jcqnly/Lab02_Unit_Testing/master/assets/menu.png)
+
 Deposit:
 ![deposit](https://raw.githubusercontent.com/jcqnly/Lab02_Unit_Testing/master/assets/deposit.png)
+
 Withdraw:
 ![withdraw](https://raw.githubusercontent.com/jcqnly/Lab02_Unit_Testing/master/assets/withdraw.png)
