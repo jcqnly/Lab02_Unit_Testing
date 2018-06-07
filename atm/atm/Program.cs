@@ -2,11 +2,11 @@
 
 namespace atm
 {
-    class Program
+    public class Program
     {
-        public static decimal Balance = 5000m;
+        public static double Balance = 5000;
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Options();
             Console.Read();
@@ -21,61 +21,104 @@ namespace atm
                 "3. View Balance\n" +
                 "4. Exit\n");
 
-            int selection = int.Parse(Console.ReadLine());
+            int selection = 0;
 
-            UserSelection(selection);
-            Console.WriteLine($"Balance is now {Balance}");
+            try
+            {
+                selection = int.Parse(Console.ReadLine());
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Invalid Entry");
+            }
+            finally
+            {
+               switch (selection)
+               {
+                   case 1:
+                       Deposit();
+                       break;
+
+                   case 2:
+                        Withdraw();
+                        break;
+
+                   case 3:
+                        Console.WriteLine($"Your balance is ${Balance}\n");
+                        break;
+
+                   case 4:
+                       Environment.Exit(0);
+                       break;
+
+                   default:
+                        Console.WriteLine("Not valid.  Select again.\n");
+                        Options();
+                        break;
+               }
+
+            }
+            Options();
         }
 
-        public static void UserSelection(int selection)
-        {
-           switch (selection)
-           {
-               case 1:
-                   Deposit();
-               break;
-
-               case 2:
-                    Withdraw();
-               break;
-
-               case 3:
-
-               break;
-
-               case 4:
-                   Environment.Exit(0);
-                   break;
-
-               default:
-                    Console.WriteLine("Not valid.  Select again");
-                    Options();
-                    break;
-           }
-        }
-
-        public static decimal Deposit()
+        public static void Deposit()
         {
             Console.WriteLine("How much would you like to deposit?\n");
-            decimal userDeposit = decimal.Parse(Console.ReadLine());
+            double userDeposit = 0;
+            try
+            {
+                userDeposit = double.Parse(Console.ReadLine());
+                if (userDeposit < 0)
+                {
+                    throw new Exception();
+                }
+                AddDeposit(userDeposit);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Wrong format.\n");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Can't deposit negative numbers.\n");
+                Deposit();
+            }
+        }
+
+        public static double AddDeposit(double userDeposit)
+        {
             Balance += userDeposit;
             return Balance;
         }
 
-        public static decimal Withdraw()
+        public static void Withdraw()
         {
-            Console.WriteLine("How much would you like to withdraw?");
-            decimal userWithdraw = decimal.Parse(Console.ReadLine());
-            if (userWithdraw > Balance)
+            Console.WriteLine("How much would you like to withdraw?\n");
+
+            double userWithdraw = 0;
+            try
             {
-                Console.WriteLine("You're withdrawing too much");
-                Withdraw();
+                userWithdraw = double.Parse(Console.ReadLine());
+                if (userWithdraw > Balance || userWithdraw < 0)
+                {
+                    Console.WriteLine("Try again.\n");
+                    Options();
+                }
+                MinusWithdraw(userWithdraw);
             }
-            else
+            catch (Exception)
             {
-                Balance -= userWithdraw;
+                Console.WriteLine("Wrong format.\n");
             }
+        }
+
+        public static double MinusWithdraw(double userWithdraw)
+        {
+            if (userWithdraw > Balance) Console.WriteLine("You don't have that much...");
+            else Balance -= userWithdraw;
             return Balance;
         }
+
     }
 }
