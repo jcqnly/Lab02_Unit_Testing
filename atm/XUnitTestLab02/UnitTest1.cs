@@ -9,18 +9,20 @@ namespace XUnitTestLab02
     {
         [Theory]
         [InlineData(1, 5001)]//passing valid input
-        [InlineData(-5000, 5001)]//passing invalid input, cannot add negative numbers
+        [InlineData(-5000, 1)]//passing invalid input, cannot add negative numbers
         public void CanDeposit(double value, double expectedResult)
         {
-            Assert.Equal(expectedResult, AddDeposit(value));            
+            Program.Balance = expectedResult;
+            Assert.Equal(value + Balance, AddDeposit(value));            
         }
 
         [Theory]
-        [InlineData(1, 5000)]//passing valid input
+        [InlineData(1, 4999)]//passing valid input
         [InlineData(1000000, 5000)]//passing invalid input, withdrawing a very large amount
-        public void CanSubtract(double value, double expectedResult)
+        public void CanWithdraw(double value, double expectedResult)
         {
-            Assert.Equal(expectedResult, MinusWithdraw(value));
+            Program.Balance = expectedResult;
+            Assert.Equal(Balance - value, MinusWithdraw(value));
         }
     }
 }
