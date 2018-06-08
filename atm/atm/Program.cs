@@ -8,12 +8,15 @@ namespace atm
 
         public static void Main(string[] args)
         {
+            //decimal balance = 5000;
+            //Console.WriteLine(balance.ToString("c"));
             Options();
             Console.Read();
         }
 
         public static void Options()
         {
+
             Console.WriteLine("Welcome to the bestest ATM!\n" +
                 "What would you like to do?\n" +
                 "1. Deposit\n" +
@@ -60,6 +63,7 @@ namespace atm
                }
 
             }
+            //give the user the menu every time they've finished a transaction
             Options();
         }
 
@@ -118,9 +122,8 @@ namespace atm
         }
         //withdraws from the running balance
         public static double MinusWithdraw(double userWithdraw)
-        {
-            if (userWithdraw > Balance) Console.WriteLine("You don't have that much...");
-            else Balance -= userWithdraw;
+        {   
+            Balance -= userWithdraw;
             Console.WriteLine($"Your balance is ${Balance}\n");
             return Balance;
         }

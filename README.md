@@ -1,4 +1,4 @@
-# Lab02_ATM Machine and Unit_Testing
+# Lab02 ATM and Unit Testing
 C# ATM console app with unit testing and error handling concepts applied.
 
 ## Dependencies
